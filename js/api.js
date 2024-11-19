@@ -17,7 +17,7 @@ export const addjoyeria = async (joyeria) => {
   const response = await fetch(API_URL, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(product)
+    body: JSON.stringify(joyeria)
   });
   return response.json();
 };
