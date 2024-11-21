@@ -40,3 +40,73 @@
   
 </body>
 </html>
+
+<div class="row">
+  <div class="col">
+    <form id="product-form">
+      <!-- Campo ID (Opcional: si quieres que el formulario acepte un ID) -->
+      <div class="mb-3">
+        <label for="id" class="form-label">ID del producto</label>
+        <input type="number" class="form-control" id="id" placeholder="ID del producto" required>
+      </div>
+
+      <!-- Campo de Materiales -->
+      <div class="mb-3">
+        <label for="materiales" class="form-label">Materiales</label>
+        <input type="text" class="form-control" id="materiales" placeholder="Materiales del producto" required>
+      </div>
+
+      <!-- Campo de Descripción -->
+      <div class="mb-3">
+        <label for="description" class="form-label">Descripción</label>
+        <textarea class="form-control" id="description" placeholder="Descripción del producto" required></textarea>
+      </div>
+
+      <!-- Campo de Precio -->
+      <div class="mb-3">
+        <label for="price" class="form-label">Precio</label>
+        <input type="number" class="form-control" id="price" placeholder="Precio del producto" required>
+      </div>
+
+      <!-- Campo de Imagen -->
+      <div class="mb-3">
+        <label for="imgUrl" class="form-label">Imagen del Producto</label>
+        <input type="text" class="form-control" id="imgUrl" placeholder="URL de la imagen del producto" required>
+      </div>
+
+      <!-- Campo de Moda -->
+      <div class="mb-3">
+        <label for="moda" class="form-label">Moda</label>
+        <input type="text" class="form-control" id="moda" placeholder="Tipo de moda" required>
+      </div>
+
+      <!-- Campo de Diseño -->
+      <div class="mb-3">
+        <label for="diseño" class="form-label">Diseño</label>
+        <input type="text" class="form-control" id="diseño" placeholder="Diseño del producto" required>
+      </div>
+
+      <!-- Botón de Enviar -->
+      <button type="submit" class="btn btn-success">Guardar</button>
+    </form>
+  </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script type="module" src="js/api.js"></script>
+<script type="module">
+  import { addProduct } from './js/api.js';
+  // Guardar Formulario de agregar producto en base de datos
+  document.getElementById('product-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const newProduct = {
+      name: document.getElementById('name').value,
+      description: document.getElementById('description').value,
+      price: parseFloat(document.getElementById('price').value),
+      imgUrl: document.getElementById('imgUrl').value
+    };
+    await addProduct(newProduct);
+    window.location.href = 'index.html'; // Redirige al inicio de la página
+  });
+</script>

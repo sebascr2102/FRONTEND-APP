@@ -17,3 +17,57 @@ joyerialist.innerHTML = products.map(products =>`
     `).join("");
     
 });
+
+// creae la vista de detalles para cada joyeria al dar click en el boton de ver mas 
+window.viewjoyeria = async (id) => {
+    const joyeria = await getjoyeriaByID(id);
+    const joyeriadelails = `
+    <div class="col">
+    <img class="img-fluid" src="${joyeria.imgurl}">
+    <h3>${product.name}</h3>
+      <p>${product.description}</p>
+      <p>Precio: ${new Intl.NumberFormat('en-ES', { style: 'currency', currency: 'USD' }).format(product.price)}</p>
+      <button class="btn btn-warning" onclick="enableEdit(${product.id})">Editar</button>
+      <button class="btn btn-danger" onclick="deleteProduct(${product.id})">Eliminar</button>
+    </div>
+    `
+   
+}
+document.getElementById('joyeria-list').innerHTML = joyeriaDetails;
+
+
+
+// Habilitamos el formulario para editar cada uno de las joyeria
+window.enableEdit = async (id) => {
+    const joyeria = await getjoyeriaByID(id);
+    const editForm = `
+      <div class="row gap-3">
+        <input type="text" id="name" value="${joyeria.name}">
+        <textarea id="description">${joyeria.description}</textarea>
+        <input type="number" id="price" value="${joyeria.price}">
+        <input type="text" id="imgUrl" value="${joyeria.imgUrl}">
+        <button class="btn btn-success" onclick="saveEdit(${id})">Guardar</button>
+      </div>
+      `;
+    document.getElementById('joyeria-list').innerHTML = editForm;
+};
+
+
+// Guardamos la nueva información en nuestra base de datos
+window.saveEdit = async (id) => {
+    const updatedjoyeria = {
+      name: document.getElementById('name').value,
+      description: document.getElementById('description').value,
+      price: parseFloat(document.getElementById('price').value),
+      imgUrl: document.getElementById('imgUrl').value
+    };
+    await updateProduct(id, updatedjoyeria);
+    location.reload();
+}
+
+// Función para borrar el producto de la joyeria  seleccionado
+window.deletejoyeria = async (id) => {
+    await deletejoyeria(id);
+    location.reload(); 
+  };
+
