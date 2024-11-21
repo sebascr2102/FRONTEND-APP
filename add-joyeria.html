@@ -96,17 +96,17 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script type="module" src="js/api.js"></script>
 <script type="module">
-  import { addProduct } from './js/api.js';
+  import { addjoyeria } from './js/api.js';
   // Guardar Formulario de agregar producto en base de datos
-  document.getElementById('product-form').addEventListener('submit', async (e) => {
+  document.getElementById('joyeria-form').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const newProduct = {
+    const newjoyeria = {
       name: document.getElementById('name').value,
       description: document.getElementById('description').value,
       price: parseFloat(document.getElementById('price').value),
       imgUrl: document.getElementById('imgUrl').value
     };
-    await addProduct(newProduct);
-    window.location.href = 'index.html'; // Redirige al inicio de la página
+    await addjoyeria(newjoyeria);
+    window.location.href = 'index.html'; 
   });
 </script>

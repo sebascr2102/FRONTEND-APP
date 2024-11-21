@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const joyerialist = document.getElementById("joyeria-list");
 
     const products = await getjoyeria();
-joyerialist.innerHTML = products.map(products =>`
+joyerialist.innerHTML = products.map(joyeria =>`
     <div class="col-xs-12-sm-6 col-md-3 card">
         <div class="card-body d-flex flex-column justify-content-end">
          <h5 class="card-title">${joyeria.name}</h5>
@@ -27,8 +27,8 @@ window.viewjoyeria = async (id) => {
     <h3>${product.name}</h3>
       <p>${product.description}</p>
       <p>Precio: ${new Intl.NumberFormat('en-ES', { style: 'currency', currency: 'USD' }).format(product.price)}</p>
-      <button class="btn btn-warning" onclick="enableEdit(${product.id})">Editar</button>
-      <button class="btn btn-danger" onclick="deleteProduct(${product.id})">Eliminar</button>
+      <button class="btn btn-warning" onclick="enableEdit(${joyeria.id})">Editar</button>
+      <button class="btn btn-danger" onclick="deleteProduct(${joyeria.id})">Eliminar</button>
     </div>
     `
    
